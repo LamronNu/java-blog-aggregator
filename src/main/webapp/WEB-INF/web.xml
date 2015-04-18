@@ -5,6 +5,7 @@
 
     <display-name>java-blog-aggregator</display-name>
     <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
@@ -21,4 +22,8 @@
         <!--<url-pattern>*.json</url-pattern>-->
         <!--<url-pattern>*.jsp</url-pattern>-->
     </servlet-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 </web-app>
