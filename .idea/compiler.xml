@@ -23,7 +23,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="java-blog-aggregator" />
+        <module name="blog-persistence" />
+        <module name="blog-service" />
+        <module name="blog-web" />
       </profile>
     </annotationProcessing>
   </component>
