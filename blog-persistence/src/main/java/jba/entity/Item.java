@@ -4,19 +4,24 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "item")
 public class Item {
 
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "title")
     private String title;
 
+    @Column(name = "description")
     private String description;
 
     @Column(name = "published_date")
     private Date publishedDate;
 
+    @Column(name = "link")
     private String link;
 
     @ManyToOne

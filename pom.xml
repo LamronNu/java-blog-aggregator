@@ -18,6 +18,7 @@
         <org.springframework.version>4.1.6.RELEASE</org.springframework.version>
         <org.apachetiles.version>3.0.5</org.apachetiles.version>
         <org.hibernate.version>4.3.8.Final</org.hibernate.version>
+        <org.spring.security.version>4.0.0.RELEASE</org.spring.security.version>
     </properties>
 
     <dependencies>

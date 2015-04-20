@@ -14,30 +14,37 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <jdbc:embedded-database type="HSQL" id="dataSource"/>
+    <!--<jdbc:embedded-database type="HSQL" id="dataSource"/>-->
 
 
-    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="packagesToScan" value="jba.entity"/>
-        <property name="dataSource" ref="dataSource"/>
-        <property name="jpaProperties">
-            <props>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
-            </props>
-        </property>
-        <property name="persistenceProvider">
-            <bean class="org.hibernate.jpa.HibernatePersistenceProvider"/>
-        </property>
-    </bean>
+    <!--<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">-->
+    <!--<property name="packagesToScan" value="jba.entity"/>-->
+    <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--<property name="jpaProperties">-->
+    <!--<props>-->
+    <!--<prop key="hibernate.show_sql">true</prop>-->
+    <!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
+    <!--</props>-->
+    <!--</property>-->
+    <!--<property name="persistenceProvider">-->
+    <!--<bean class="org.hibernate.jpa.HibernatePersistenceProvider"/>-->
+    <!--</property>-->
+    <!--</bean>-->
 
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
 
-    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
+    <!--<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">-->
+    <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--</bean>-->
 
-    <jpa:repositories base-package="jba.repository" entity-manager-factory-ref="emf"/>
+    <!--<jpa:repositories base-package="jba.repository" entity-manager-factory-ref="emf"/>-->
     <!--<context:component-scan base-package="jba.service"/>-->
+
+    <!--security properties-->
+    <import resource="security.xml"/>
+
+    <!--hibernate-properties-->
+    <import resource="hibernate.xml"/>
+
 
 </beans>

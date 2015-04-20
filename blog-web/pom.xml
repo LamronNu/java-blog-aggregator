@@ -12,7 +12,23 @@
     <artifactId>blog-web</artifactId>
     <packaging>war</packaging>
 
+
+
     <dependencies>
+
+        <!--spring security-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${org.spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${org.spring.security.version}</version>
+        </dependency>
+
+        <!--modules-->
         <dependency>
             <groupId>java-blog</groupId>
             <artifactId>blog-persistence</artifactId>
@@ -24,6 +40,7 @@
             <artifactId>blog-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
 
 </project>

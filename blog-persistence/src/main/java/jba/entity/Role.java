@@ -1,17 +1,17 @@
 package jba.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "role")
 public class Role {
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "name")
     private String name;
 
     @ManyToMany(mappedBy = "roles")

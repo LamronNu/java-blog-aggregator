@@ -4,13 +4,18 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "blog")
 public class Blog {
+
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "url")
     private String url;
 
+    @Column(name = "name")
     private String name;
 
     @ManyToOne
