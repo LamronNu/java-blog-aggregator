@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Transactional
+
 @Service
+@Transactional
 public class InitDbService {
 
     @Autowired

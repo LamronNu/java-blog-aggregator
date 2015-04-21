@@ -2,23 +2,25 @@ package jba.dao;
 
 import jba.entity.Blog;
 import jba.entity.User;
-import jba.util.HibernateUtil;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
+@Transactional
 public class BlogDaoImpl implements BlogDao{
 
-    //@Autowired
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    @Autowired
+    private SessionFactory sessionFactory;
 
 
     @Override
     public List<Blog> findByUser(User user) {
         return (List<Blog>) sessionFactory.getCurrentSession()
-                .createQuery("from blog")
+                .createQuery("from Blog WHERE id=" + user.getId())
                 .list();
     }
 
