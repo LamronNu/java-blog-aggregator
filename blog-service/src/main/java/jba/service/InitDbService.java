@@ -4,10 +4,10 @@ import jba.dao.BlogDao;
 import jba.dao.ItemDao;
 import jba.dao.RoleDao;
 import jba.dao.UserDao;
-import jba.entity.Blog;
-import jba.entity.Item;
-import jba.entity.Role;
-import jba.entity.User;
+import jba.model.Blog;
+import jba.model.Item;
+import jba.model.Role;
+import jba.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +51,7 @@ public class InitDbService {
         userDao.save(userAdmin);
 
         Blog blogJava = new Blog();
-        blogJava.setName("JavaVids");
+        blogJava.setName("JavaVids (user admin)");
         blogJava.setUrl("http://feeds.feedburner.com/javavids?format=xml");
         blogJava.setUser(userAdmin);
         blogDao.save(blogJava);
@@ -79,7 +79,7 @@ public class InitDbService {
         userDao.save(userTest);
 
         blogJava = new Blog();
-        blogJava.setName("web-service blog");
+        blogJava.setName("web-service blog (user test)");
         blogJava.setUrl("http://feeds.feedburner.com/javavids?format=xml");
         blogJava.setUser(userTest);
         blogDao.save(blogJava);
@@ -93,14 +93,14 @@ public class InitDbService {
 
         item2 = new Item();
         item2.setBlog(blogJava);
-        item2.setTitle("second");
+        item2.setTitle("second item");
         item2.setLink("http://www.javavids.com");
         item2.setPublishedDate(new Date());
         itemDao.save(item2);
 
         item2 = new Item();
         item2.setBlog(blogJava);
-        item2.setTitle("third");
+        item2.setTitle("third item");
         item2.setLink("http://www.javavids.com");
         item2.setPublishedDate(new Date());
         itemDao.save(item2);

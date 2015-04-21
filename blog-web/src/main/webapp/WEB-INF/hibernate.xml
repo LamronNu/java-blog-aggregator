@@ -28,7 +28,7 @@
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="jba.entity"/>
+        <property name="packagesToScan" value="jba.model"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
@@ -50,9 +50,9 @@
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
     <!--beans-->
-    <bean id ="userDao" class = "jba.dao.UserDaoImpl" />
-    <bean id ="blogDao" class = "jba.dao.BlogDaoImpl" />
-    <bean id ="roleDao" class = "jba.dao.RoleDaoImpl" />
-    <bean id ="itemDao" class = "jba.dao.ItemDaoImpl" />
+    <bean id="userDao" class="jba.dao.impl.UserDaoImpl"/>
+    <bean id="blogDao" class="jba.dao.impl.BlogDaoImpl"/>
+    <bean id="roleDao" class="jba.dao.impl.RoleDaoImpl"/>
+    <bean id="itemDao" class="jba.dao.impl.ItemDaoImpl"/>
 
 </beans>

@@ -21,5 +21,7 @@
     <!--hibernate-properties-->
     <import resource="hibernate.xml"/>
 
+    <!--service-properties-->
+    <bean id="userService" class="jba.service.impl.UserServiceImpl"/>
 
 </beans>

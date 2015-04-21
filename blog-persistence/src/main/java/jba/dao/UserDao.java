@@ -1,6 +1,6 @@
 package jba.dao;
 
-import jba.entity.User;
+import jba.model.User;
 
 import java.util.List;
 

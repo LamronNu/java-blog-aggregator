@@ -1,4 +1,4 @@
-package jba.entity;
+package jba.model;
 
 import javax.persistence.*;
 import java.util.Date;

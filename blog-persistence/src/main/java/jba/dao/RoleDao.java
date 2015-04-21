@@ -1,6 +1,6 @@
 package jba.dao;
 
-import jba.entity.Role;
+import jba.model.Role;
 
 public interface RoleDao {
     public void save(Role role);

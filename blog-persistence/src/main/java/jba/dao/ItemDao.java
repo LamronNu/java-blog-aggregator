@@ -1,7 +1,7 @@
 package jba.dao;
 
-import jba.entity.Blog;
-import jba.entity.Item;
+import jba.model.Blog;
+import jba.model.Item;
 
 import java.util.List;
 

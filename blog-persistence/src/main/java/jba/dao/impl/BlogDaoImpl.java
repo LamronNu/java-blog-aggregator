@@ -1,7 +1,8 @@
-package jba.dao;
+package jba.dao.impl;
 
-import jba.entity.Blog;
-import jba.entity.User;
+import jba.dao.BlogDao;
+import jba.model.Blog;
+import jba.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class BlogDaoImpl implements BlogDao{
+public class BlogDaoImpl implements BlogDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -19,8 +20,9 @@ public class BlogDaoImpl implements BlogDao{
 
     @Override
     public List<Blog> findByUser(User user) {
+
         return (List<Blog>) sessionFactory.getCurrentSession()
-                .createQuery("from Blog WHERE id=" + user.getId())
+                .createQuery("from Blog WHERE user=" + user.getId())
                 .list();
     }
 
