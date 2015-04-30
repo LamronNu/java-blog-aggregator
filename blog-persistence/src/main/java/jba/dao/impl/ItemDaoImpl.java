@@ -39,4 +39,13 @@ public class ItemDaoImpl implements ItemDao {
     public void save(Item item) {
         getCurrentSession().save(item);
     }
+
+    @Override
+    public Item findByBlogAndLink(Blog blog, String link) {
+        Query query = getCurrentSession()
+                .createQuery("from Item WHERE blog=? and link=?")
+                .setParameter(0, blog.getId())
+                .setParameter(1, link);
+        return (Item) query.list().get(0);
+    }
 }
