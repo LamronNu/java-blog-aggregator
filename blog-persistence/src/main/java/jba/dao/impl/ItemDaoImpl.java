@@ -21,19 +21,22 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public List<Item> findByBlog(Blog blog) {
-        Session session = sessionFactory.getCurrentSession();
 //        Criteria cr = session.createCriteria(Item.class);
 //        cr.add(Restrictions.eq("blog", blog.getId()));
 //        List<Item> results = cr.list();
-        Query query = session
+        Query query = getCurrentSession()
                 .createQuery("FROM Item WHERE blog=" + blog.getId());
-        List<Item> results = (List<Item>) query.list();
+        List<Item> results = query.list();
         return results;
 
     }
 
+    private Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
     @Override
     public void save(Item item) {
-        sessionFactory.getCurrentSession().save(item);
+        getCurrentSession().save(item);
     }
 }

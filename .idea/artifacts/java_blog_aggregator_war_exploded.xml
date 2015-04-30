@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="java-blog-aggregator:war exploded">
-    <output-path>$PROJECT_DIR$/target/java-blog-aggregator-1.0-SNAPSHOT</output-path>
+  <artifact type="exploded-war" build-on-make="true" name="java-blog-aggregator:war exploded">
+    <output-path>$PROJECT_DIR$/target</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -55,6 +55,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.1.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-oxm:4.1.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.6.RELEASE" />
+          <element id="library" level="project" name="hibernate:hibernate-entitymanager:3.4.0.GA" />
         </element>
       </element>
       <element id="directory" name="META-INF">

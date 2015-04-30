@@ -13,7 +13,7 @@
 
     <context:property-placeholder location="/WEB-INF/jdbc.properties"/>
 
-    <!--<jdbc:embedded-database type="HSQL" id="dataSource"/>-->
+    <!--<jdbc:embedded-database type="HSQL" id="dataSourceE"/>-->
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">

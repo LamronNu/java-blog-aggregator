@@ -1,6 +1,10 @@
 package jba.model;
 
+import jba.annotation.UniqueUsername;
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -11,22 +15,38 @@ public class User {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name")
+    @Size(min = 3, message = "Name must be at least 3 characters!")
+    @Column(name = "name", unique = true)
+    @UniqueUsername(message = "Such username already exists!")
     private String name;
 
+    @Email(message = "Invalid email!")
+    @Size(min = 1, message = "Invalid email!")
     @Column(name = "email")
     private String email;
 
     @Column(name = "password")
+    @Size(min = 5, message = "Name must be at least 5 characters!")
     private String password;
+
+    @Column(name = "enabled")
+    private boolean enabled;
 
     @ManyToMany
     @JoinTable
     private List<Role> roles;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Blog> blogs;
 
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
     public List<Blog> getBlogs() {
         return blogs;

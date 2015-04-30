@@ -9,6 +9,7 @@ import jba.model.Item;
 import jba.model.Role;
 import jba.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -38,12 +39,15 @@ public class InitDbService {
         roleDao.save(roleUser);
 
         Role roleAdmin = new Role();
-        roleAdmin.setName("ROLE_Admin");
+        roleAdmin.setName("ROLE_ADMIN");
         roleDao.save(roleAdmin);
 
         //user admin
         User userAdmin = new User();
         userAdmin.setName("admin");
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        userAdmin.setPassword(encoder.encode("admin"));
+        userAdmin.setEnabled(true);
         List<Role> roles = new ArrayList<Role>();
         roles.add(roleAdmin);
         roles.add(roleUser);
@@ -72,7 +76,9 @@ public class InitDbService {
 
         //user test
         User userTest = new User();
-        userTest.setName("test");
+        userTest.setName("user");
+        userTest.setPassword(encoder.encode("user"));
+        userTest.setEnabled(true);
         roles = new ArrayList<Role>();
         roles.add(roleUser);
         userTest.setRoles(roles);

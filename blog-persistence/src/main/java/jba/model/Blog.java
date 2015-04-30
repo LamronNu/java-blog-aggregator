@@ -1,6 +1,9 @@
 package jba.model;
 
+import org.hibernate.validator.constraints.URL;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -12,9 +15,12 @@ public class Blog {
     @Column(name = "id")
     private Integer id;
 
+    @URL(message = "Invalid url!")
+    @Size(min = 1, message = "Invalid url!")
     @Column(name = "url")
     private String url;
 
+    @Size(min = 1, message = "Name must be at least 1 character!")
     @Column(name = "name")
     private String name;
 
@@ -22,7 +28,7 @@ public class Blog {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "blog")
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.REMOVE)
     private List<Item> items;
 
     public List<Item> getItems() {

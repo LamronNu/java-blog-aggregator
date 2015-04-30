@@ -12,4 +12,10 @@ public interface UserService {
     public User findOneWithBlogs(Integer id);
 
     public void save(User user);
+
+    public User findOneWithBlogs(String name);
+
+    void delete(int id);
+
+    User findOne(String name);
 }
