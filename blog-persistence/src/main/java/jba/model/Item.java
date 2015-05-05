@@ -1,5 +1,7 @@
 package jba.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,10 +14,12 @@ public class Item {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "title")
+    @Column(name = "title", length = 1000)
     private String title;
 
-    @Column(name = "description")
+    @Lob
+    @Type(type = "org.hibernate.type.StringClobType")
+    @Column(name = "description", length = Integer.MAX_VALUE)
     private String description;
 
     @Column(name = "published_date")

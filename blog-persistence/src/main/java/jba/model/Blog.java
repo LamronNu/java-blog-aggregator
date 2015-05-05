@@ -17,11 +17,11 @@ public class Blog {
 
     @URL(message = "Invalid url!")
     @Size(min = 1, message = "Invalid url!")
-    @Column(name = "url")
+    @Column(name = "url", length = 1000)
     private String url;
 
     @Size(min = 1, message = "Name must be at least 1 character!")
-    @Column(name = "name")
+    @Column(name = "name", length = 1000)
     private String name;
 
     @ManyToOne

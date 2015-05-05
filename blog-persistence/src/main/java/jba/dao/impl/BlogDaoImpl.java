@@ -47,4 +47,11 @@ public class BlogDaoImpl implements BlogDao {
     public void delete(Blog blog) {
         getCurrentSession().delete(blog);
     }
+
+    @Override
+    public List<Blog> findAll() {
+        return (List<Blog>) getCurrentSession()
+                .createQuery("from Blog")
+                .list();
+    }
 }

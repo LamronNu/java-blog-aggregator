@@ -5,7 +5,6 @@ import jba.dao.ItemDao;
 import jba.dao.RoleDao;
 import jba.dao.UserDao;
 import jba.model.Blog;
-import jba.model.Item;
 import jba.model.Role;
 import jba.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -34,6 +32,10 @@ public class InitDbService {
 
     @PostConstruct
     public void init() {
+        //check on existing db data
+        if (roleDao.findByName("ROLE_ADMIN") != null)
+            return;
+
         Role roleUser = new Role();
         roleUser.setName("ROLE_USER");
         roleDao.save(roleUser);
@@ -54,25 +56,39 @@ public class InitDbService {
         userAdmin.setRoles(roles);
         userDao.save(userAdmin);
 
+        //blog Java
         Blog blogJava = new Blog();
-        blogJava.setName("JavaVids (user admin)");
+        blogJava.setName("JavaVids");
         blogJava.setUrl("http://feeds.feedburner.com/javavids?format=xml");
         blogJava.setUser(userAdmin);
         blogDao.save(blogJava);
 
-        Item item1 = new Item();
-        item1.setBlog(blogJava);
-        item1.setTitle("first");
-        item1.setLink("http://www.javavids.com");
-        item1.setPublishedDate(new Date());
-        itemDao.save(item1);
+        //eclipse blog
+        blogJava = new Blog();
+        blogJava.setName("Eclipse blog");
+        blogJava.setUrl("http://eclipsesource.com/blogs/author/irbull/feed/");
+        blogJava.setUser(userAdmin);
+        blogDao.save(blogJava);
 
-        Item item2 = new Item();
-        item2.setBlog(blogJava);
-        item2.setTitle("second");
-        item2.setLink("http://www.javavids.com");
-        item2.setPublishedDate(new Date());
-        itemDao.save(item2);
+        //Java world core blog
+        blogJava = new Blog();
+        blogJava.setName("Java world core");
+        blogJava.setUrl("http://www.javaworld.com/category/core-java/index.rss");
+        blogJava.setUser(userAdmin);
+        blogDao.save(blogJava);
+//        Item item1 = new Item();
+//        item1.setBlog(blogJava);
+//        item1.setTitle("first");
+//        item1.setLink("http://www.javavids.com");
+//        item1.setPublishedDate(new Date());
+//        itemDao.save(item1);
+//
+//        Item item2 = new Item();
+//        item2.setBlog(blogJava);
+//        item2.setTitle("second");
+//        item2.setLink("http://www.javavids.com");
+//        item2.setPublishedDate(new Date());
+//        itemDao.save(item2);
 
         //user test
         User userTest = new User();
@@ -84,32 +100,33 @@ public class InitDbService {
         userTest.setRoles(roles);
         userDao.save(userTest);
 
+        //tomcat blog
         blogJava = new Blog();
-        blogJava.setName("web-service blog (user test)");
-        blogJava.setUrl("http://feeds.feedburner.com/javavids?format=xml");
+        blogJava.setName("Tomcat expert");
+        blogJava.setUrl("http://www.tomcatexpert.com/blog/feed");
         blogJava.setUser(userTest);
         blogDao.save(blogJava);
 
-        item1 = new Item();
-        item1.setBlog(blogJava);
-        item1.setTitle("first item");
-        item1.setLink("http://www.javavids.com");
-        item1.setPublishedDate(new Date());
-        itemDao.save(item1);
-
-        item2 = new Item();
-        item2.setBlog(blogJava);
-        item2.setTitle("second item");
-        item2.setLink("http://www.javavids.com");
-        item2.setPublishedDate(new Date());
-        itemDao.save(item2);
-
-        item2 = new Item();
-        item2.setBlog(blogJava);
-        item2.setTitle("third item");
-        item2.setLink("http://www.javavids.com");
-        item2.setPublishedDate(new Date());
-        itemDao.save(item2);
+//        item1 = new Item();
+//        item1.setBlog(blogJava);
+//        item1.setTitle("first item");
+//        item1.setLink("http://www.javavids.com");
+//        item1.setPublishedDate(new Date());
+//        itemDao.save(item1);
+//
+//        item2 = new Item();
+//        item2.setBlog(blogJava);
+//        item2.setTitle("second item");
+//        item2.setLink("http://www.javavids.com");
+//        item2.setPublishedDate(new Date());
+//        itemDao.save(item2);
+//
+//        item2 = new Item();
+//        item2.setBlog(blogJava);
+//        item2.setTitle("third item");
+//        item2.setLink("http://www.javavids.com");
+//        item2.setPublishedDate(new Date());
+//        itemDao.save(item2);
 
     }
 }

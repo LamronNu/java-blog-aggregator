@@ -8,4 +8,6 @@ public interface BlogService {
     public Blog findById(int id);
 
     public void delete(Blog blog);
+
+    public void reloadBlogs();
 }

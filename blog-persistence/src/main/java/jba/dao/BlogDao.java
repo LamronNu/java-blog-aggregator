@@ -12,4 +12,6 @@ public interface BlogDao {
     Blog findById(int id);
 
     void delete(Blog blog);
+
+    List<Blog> findAll();
 }

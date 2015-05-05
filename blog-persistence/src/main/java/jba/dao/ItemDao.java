@@ -10,4 +10,6 @@ public interface ItemDao {
     public void save(Item item);
 
     Item findByBlogAndLink(Blog blog, String link);
+
+    List<Item> findAll();
 }
