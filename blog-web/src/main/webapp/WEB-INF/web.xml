@@ -69,6 +69,7 @@
     <context-param>
         <param-name>spring.profiles.default</param-name>
         <param-value>prod</param-value>
+        <!---Dspring.profiles.active="dev"-->
     </context-param>
 
 </web-app>

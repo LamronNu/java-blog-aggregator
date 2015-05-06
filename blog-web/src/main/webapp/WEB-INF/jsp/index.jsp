@@ -21,7 +21,7 @@ Hello from spring web mvc!
             <td>
                 <c:out value="${item.publishedDate}"/>
                 <br/>
-                <c:out value="${item.blog.name}"/>
+                <b><i><c:out value="${item.blog.name}"/></i></b>
             </td>
             <td>
                 <strong>

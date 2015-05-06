@@ -10,4 +10,6 @@ public interface BlogService {
     public void delete(Blog blog);
 
     public void reloadBlogs();
+
+    Blog findByIdWithUser(int id);
 }

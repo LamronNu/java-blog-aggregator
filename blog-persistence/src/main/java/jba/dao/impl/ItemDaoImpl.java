@@ -59,6 +59,6 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public List<Item> findAll() {
-        return (List<Item>) getCurrentSession().createQuery("from Item").list();
+        return (List<Item>) getCurrentSession().createQuery("from Item order by published_date desc").list();//to do better
     }
 }

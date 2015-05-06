@@ -59,6 +59,14 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public Blog findByIdWithUser(int id) {
+        Blog blog = findById(id);
+        User user = userDao.findOne(blog.getUser().getId());
+        blog.setUser(user);
+        return blog;
+    }
+
+    @Override
     public void save(Blog blog, String username) {
         User user = userDao.findByUserName(username);
         blog.setUser(user);
@@ -72,8 +80,9 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    @PreAuthorize("#blog.user.name == authentication.name or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("#blog.user.name == authentication.name or hasRole('ROLE_ADMIN')") //
     public void delete(@P("blog") Blog blog) {
+        //blog=blogDao.findById(blog.getId());
         blogDao.delete(blog);
     }
 }

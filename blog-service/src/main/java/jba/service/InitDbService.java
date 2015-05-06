@@ -33,49 +33,66 @@ public class InitDbService {
     @PostConstruct
     public void init() {
         //check on existing db data
-        if (roleDao.findByName("ROLE_ADMIN") != null)
-            return;
 
-        Role roleUser = new Role();
-        roleUser.setName("ROLE_USER");
-        roleDao.save(roleUser);
-
-        Role roleAdmin = new Role();
-        roleAdmin.setName("ROLE_ADMIN");
-        roleDao.save(roleAdmin);
-
-        //user admin
-        User userAdmin = new User();
-        userAdmin.setName("admin");
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        userAdmin.setPassword(encoder.encode("admin"));
-        userAdmin.setEnabled(true);
-        List<Role> roles = new ArrayList<Role>();
-        roles.add(roleAdmin);
-        roles.add(roleUser);
-        userAdmin.setRoles(roles);
-        userDao.save(userAdmin);
 
-        //blog Java
-        Blog blogJava = new Blog();
-        blogJava.setName("JavaVids");
-        blogJava.setUrl("http://feeds.feedburner.com/javavids?format=xml");
-        blogJava.setUser(userAdmin);
-        blogDao.save(blogJava);
+        if (roleDao.findByName("ROLE_ADMIN") == null) {
 
-        //eclipse blog
-        blogJava = new Blog();
-        blogJava.setName("Eclipse blog");
-        blogJava.setUrl("http://eclipsesource.com/blogs/author/irbull/feed/");
-        blogJava.setUser(userAdmin);
-        blogDao.save(blogJava);
+            Role roleUser = new Role();
+            roleUser.setName("ROLE_USER");
+            roleDao.save(roleUser);
 
-        //Java world core blog
-        blogJava = new Blog();
-        blogJava.setName("Java world core");
-        blogJava.setUrl("http://www.javaworld.com/category/core-java/index.rss");
-        blogJava.setUser(userAdmin);
-        blogDao.save(blogJava);
+            Role roleAdmin = new Role();
+            roleAdmin.setName("ROLE_ADMIN");
+            roleDao.save(roleAdmin);
+        }
+        if (userDao.findByUserName("admin") == null) {
+            //user admin
+            User userAdmin = new User();
+            userAdmin.setName("admin");
+            userAdmin.setPassword(encoder.encode("admin"));
+            userAdmin.setEnabled(true);
+            List<Role> roles = new ArrayList<Role>();
+            roles.add(roleDao.findByName("ROLE_ADMIN"));
+            roles.add(roleDao.findByName("ROLE_USER"));
+            userAdmin.setRoles(roles);
+            userDao.save(userAdmin);
+
+            //blog Java
+            Blog blogJava = new Blog();
+            blogJava.setName("JavaVids");
+            blogJava.setUrl("http://feeds.feedburner.com/javavids?format=xml");
+            blogJava.setUser(userAdmin);
+            blogDao.save(blogJava);
+
+            //eclipse blog
+            blogJava = new Blog();
+            blogJava.setName("Eclipse blog");
+            blogJava.setUrl("http://eclipsesource.com/blogs/author/irbull/feed/");
+            blogJava.setUser(userAdmin);
+            blogDao.save(blogJava);
+
+            //Java world core blog
+            blogJava = new Blog();
+            blogJava.setName("Java world core");
+            blogJava.setUrl("http://www.javaworld.com/category/core-java/index.rss");
+            blogJava.setUser(userAdmin);
+            blogDao.save(blogJava);
+
+            //
+            blogJava = new Blog();
+            blogJava.setName("Gosia blog");
+            blogJava.setUrl("http://eclipsesource.com/blogs/author/gosia/feed/");
+            blogJava.setUser(userAdmin);
+            blogDao.save(blogJava);
+
+            //
+            blogJava = new Blog();
+            blogJava.setName("jeick blog");
+            blogJava.setUrl("http://eclipsesource.com/blogs/author/jeick/feed/");
+            blogJava.setUser(userAdmin);
+            blogDao.save(blogJava);
+        }
 //        Item item1 = new Item();
 //        item1.setBlog(blogJava);
 //        item1.setTitle("first");
@@ -91,22 +108,23 @@ public class InitDbService {
 //        itemDao.save(item2);
 
         //user test
-        User userTest = new User();
-        userTest.setName("user");
-        userTest.setPassword(encoder.encode("user"));
-        userTest.setEnabled(true);
-        roles = new ArrayList<Role>();
-        roles.add(roleUser);
-        userTest.setRoles(roles);
-        userDao.save(userTest);
+        if (userDao.findByUserName("test") == null) {
+            User userTest = new User();
+            userTest.setName("user");
+            userTest.setPassword(encoder.encode("user"));
+            userTest.setEnabled(true);
+            List<Role> roles = new ArrayList<Role>();
+            roles.add(roleDao.findByName("ROLE_USER"));
+            userTest.setRoles(roles);
+            userDao.save(userTest);
 
-        //tomcat blog
-        blogJava = new Blog();
-        blogJava.setName("Tomcat expert");
-        blogJava.setUrl("http://www.tomcatexpert.com/blog/feed");
-        blogJava.setUser(userTest);
-        blogDao.save(blogJava);
-
+            //tomcat blog
+            Blog blogJava = new Blog();
+            blogJava.setName("Tomcat expert");
+            blogJava.setUrl("http://www.tomcatexpert.com/blog/feed");
+            blogJava.setUser(userTest);
+            blogDao.save(blogJava);
+        }
 //        item1 = new Item();
 //        item1.setBlog(blogJava);
 //        item1.setTitle("first item");
