@@ -61,7 +61,7 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog findByIdWithUser(int id) {
         Blog blog = findById(id);
-        User user = userDao.findOne(blog.getUser().getId());
+        User user = userDao.findById(blog.getUser().getId());
         blog.setUser(user);
         return blog;
     }

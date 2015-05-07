@@ -16,8 +16,19 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemDao itemDao;
 
+    @Override
     public List<Item> getItems() {
         return itemDao.findAll();
         // /*new PageRequest(0, 20, Direction.DESC, "publishedDate")*/).getContent();
+    }
+
+    @Override
+    public int getItemsCount() {
+        return itemDao.findCount();
+    }
+
+    @Override
+    public List<Item> getItems(int pageNumber) {
+        return itemDao.findAll(pageNumber);
     }
 }

@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findOne(int id) {
-        return userDao.findOne(id);
+        return userDao.findById(id);
     }
 
     @Transactional

@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
     private SessionFactory sessionFactory;
 
     @Override
-    //@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     public List<User> findAll() {
         return (List<User>) getCurrentSession()
                 .createQuery("from User")
@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findOne(Integer id) {
+    public User findById(Integer id) {
         User user = (User) getCurrentSession().load(
                 User.class, id);
 
@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void delete(int id) {
-        getCurrentSession().delete(findOne(id));
+        getCurrentSession().delete(findById(id));
     }
 
     private Session getCurrentSession() {

@@ -1,7 +1,6 @@
 package jba.service;
 
 import jba.dao.BlogDao;
-import jba.dao.ItemDao;
 import jba.dao.RoleDao;
 import jba.dao.UserDao;
 import jba.model.Blog;
@@ -25,17 +24,16 @@ public class InitDbService {
     private UserDao userDao;
     @Autowired
     private BlogDao blogDao;
-    @Autowired
-    private ItemDao itemDao;
+
     @Autowired
     private RoleDao roleDao;
 
     @PostConstruct
     public void init() {
-        //check on existing db data
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+        //check on existing db data
         if (roleDao.findByName("ROLE_ADMIN") == null) {
 
             Role roleUser = new Role();
@@ -93,22 +91,9 @@ public class InitDbService {
             blogJava.setUser(userAdmin);
             blogDao.save(blogJava);
         }
-//        Item item1 = new Item();
-//        item1.setBlog(blogJava);
-//        item1.setTitle("first");
-//        item1.setLink("http://www.javavids.com");
-//        item1.setPublishedDate(new Date());
-//        itemDao.save(item1);
-//
-//        Item item2 = new Item();
-//        item2.setBlog(blogJava);
-//        item2.setTitle("second");
-//        item2.setLink("http://www.javavids.com");
-//        item2.setPublishedDate(new Date());
-//        itemDao.save(item2);
 
         //user test
-        if (userDao.findByUserName("test") == null) {
+        if (userDao.findByUserName("user") == null) {
             User userTest = new User();
             userTest.setName("user");
             userTest.setPassword(encoder.encode("user"));
@@ -125,26 +110,6 @@ public class InitDbService {
             blogJava.setUser(userTest);
             blogDao.save(blogJava);
         }
-//        item1 = new Item();
-//        item1.setBlog(blogJava);
-//        item1.setTitle("first item");
-//        item1.setLink("http://www.javavids.com");
-//        item1.setPublishedDate(new Date());
-//        itemDao.save(item1);
-//
-//        item2 = new Item();
-//        item2.setBlog(blogJava);
-//        item2.setTitle("second item");
-//        item2.setLink("http://www.javavids.com");
-//        item2.setPublishedDate(new Date());
-//        itemDao.save(item2);
-//
-//        item2 = new Item();
-//        item2.setBlog(blogJava);
-//        item2.setTitle("third item");
-//        item2.setLink("http://www.javavids.com");
-//        item2.setPublishedDate(new Date());
-//        itemDao.save(item2);
 
     }
 }
