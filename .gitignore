@@ -15,8 +15,8 @@ hs_err_pid*
 
 
 
-.idea/libraries
-.idea
+#.idea/libraries
+#.idea
 target
 
 blog-web/blog-web.iml
