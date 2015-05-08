@@ -19,3 +19,7 @@ hs_err_pid*
 .idea
 target
 trash
+blog-web/blog-web.iml
+java-blog-aggregator.iml
+blog-service/blog-service.iml
+blog-persistence/blog-persistence.iml
