@@ -14,5 +14,5 @@ Techologies:
 Databases:
 - dev: MySQL
 - production: Postgre
-- 
+
 result app: http://jba-example.herokuapp.com/
