@@ -43,4 +43,11 @@
         <put-attribute name="body" value="/WEB-INF/jsp/login.jsp"/>
         <put-attribute name="current" value="login"/>
     </definition>
+
+    <!--<definition name="itemsTable" extends="index">-->
+    <!--&lt;!&ndash;<put-attribute name="title" value="Authentication"/>&ndash;&gt;-->
+    <!--<put-attribute name="body" value="/WEB-INF/jsp/itemsTable.jsp"/>-->
+    <!--<put-attribute name="current" value="index"/>-->
+    <!--</definition>-->
+
 </tiles-definitions>

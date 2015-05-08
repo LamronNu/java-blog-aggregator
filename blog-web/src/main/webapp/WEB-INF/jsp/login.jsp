@@ -14,7 +14,7 @@
         <br>
         <br>
 
-        <div>you can log in as admin/admin or user/user</div>
+        <%--<div>you can log in as admin/admin or user/user</div>--%>
     </form>
 
 </div>

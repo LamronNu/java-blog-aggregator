@@ -98,23 +98,36 @@
     <div class="tab-content">
         <c:forEach items="${user.blogs}" var="blog">
             <div role="tabpanel" class="tab-pane" id="blog_${blog.id}">
-                <h1> ${blog.name}</h1>
-                <a href="<spring:url value="/blog/remove/${blog.id}.html" />" class="btn btn-danger triggerRemove">remove
-                    blog</a>
 
-                <p> ${blog.url}</p>
+                    <%--blog name and link--%>
+                <h1><a href="<spring:url value="${blog.url}" />">${blog.name}</a></h1>
 
-                <table class="table table-bordered table-hover table-striped">
+                    <%--remove blog button--%>
+                <a href="<spring:url value="/blog/remove/${blog.id}.html" />"
+                   class="btn btn-danger triggerRemove">Remove blog</a>
+
+                    <%--blog items--%>
+                <table class="table table-bordered table-hover table-striped" id="itemsTable">
                     <thead>
-                    <tr>
-                        <th>date</th>
-                        <th>item</th>
-                    </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>date</th>
+                            <th>item</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${blog.items}" var="item">
+                    <c:forEach items="${blog.items}" var="item" varStatus="rowCounter">
                         <tr>
-                            <td><c:out value="${item.publishedDate}"/></td>
+                            <td align="center">
+                                <c:set var="rowNumber" scope="session"
+                                       value="${(currentPage - 1) * pageSize + rowCounter.count}"/>
+                                <b><c:out value="${rowNumber}"/></b>
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${item.publishedDate}" pattern="dd-MM-yyyy"/>
+                                <br/>
+                                <b><i><c:out value="${item.blog.name}"/></i></b>
+                            </td>
                             <td>
                                 <strong>
                                     <a href="<c:out value="${item.link}" />" target="_blank">
@@ -128,6 +141,7 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                    <%--end blog items--%>
             </div>
         </c:forEach>
     </div>

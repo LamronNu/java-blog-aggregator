@@ -104,11 +104,11 @@
             <version>${org.apachetiles.version}</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.apache.tiles</groupId>-->
-            <!--<artifactId>tiles-request-api</artifactId>-->
-            <!--<version>${org.apachetiles.version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-request-api</artifactId>
+            <version>1.0.6</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>

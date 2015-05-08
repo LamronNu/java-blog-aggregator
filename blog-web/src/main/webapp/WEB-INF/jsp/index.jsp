@@ -1,77 +1,52 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-Hello from spring web mvc!
-<br>
-
 <%@ include file="../layout/taglib.jsp" %>
 
 <h1>Latest news from the Java world:</h1>
 
 <%--pages and sort--%>
-<c:set var="previousPage" scope="session" value="${currentPage == 1 ? 1 : currentPage}"/>
+<c:set var="previousPage" scope="session" value="${currentPage == 1 ? 1 : currentPage - 1}"/>
+<c:set var="nextPage" scope="session" value="${currentPage == pages ? pages : currentPage + 1}"/>
+
 
 <nav>
-    <ul class="pagination navbar-right">
+    <ul class="pagination navbar-right pagination pagination-sm">
         <li>
-            <a href="index/pages/${previousPage}.html" aria-label="Previous">
+            <a href='<spring:url value="/page/${previousPage}.html"/>' aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
         <c:forEach var = "page" begin="1" end="${pages}">
-            <li><a href="<spring:url value='pages/${page}.html'/>">${page}</a></li>
+            <li class="${currentPage == page ? 'active':''}">
+                <a href='<spring:url value="/page/${page}.html"/>'>
+                    <c:out value="${page}"/></a></li>
         </c:forEach>
         <li>
-            <a href="#" aria-label="Next">
+            <a href='<spring:url value="/page/${nextPage}.html"/>' aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>
     </ul>
 </nav>
-    <%--<ul class="nav nav-tabs navbar-right">--%>
-        <%--<ul class="nav nav-tabs">--%>
-            <%--<li role="presentation" class="active"><a href="#">1</a></li>--%>
-            <%--<c:choose>--%>
-                <%--<c:when test="${pages == 2}">--%>
-                    <%--<li role="presentation" class="active"><a href="#">2</a></li>--%>
-                <%--</c:when>--%>
-                <%--<c:when test="${pages == 3}">--%>
-                    <%--<li role="presentation"><a href="#">2</a></li>--%>
-                    <%--<li role="presentation"><a href="#">3</a></li>--%>
-                <%--</c:when>--%>
-
-                <%--<c:otherwise>--%>
-                    <%--<li role="presentation">...</li>--%>
-                    <%--<li role="presentation"><a href="#">${pages}</a></li>--%>
-                <%--</c:otherwise>--%>
-            <%--</c:choose>--%>
-
-
-            <%--&lt;%&ndash;to do sort&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<li role="presentation" class="dropdown">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;Dropdown <span class="caret"></span>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<ul class="dropdown-menu" role="menu">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;...&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</ul>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</li>&ndash;%&gt;--%>
-        <%--</ul>--%>
-    <%--</ul>--%>
-
 
 <%--items table--%>
-<table class="table table-bordered table-hover table-striped">
+<table class="table table-bordered table-hover table-striped" id="itemsTable">
     <thead>
     <tr>
+        <th>#</th>
         <th>date</th>
         <th>item</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${items}" var="item">
+    <c:forEach items="${items}" var="item" varStatus="rowCounter">
         <tr>
+            <td align="center">
+                <c:set var="rowNumber" scope="session" value="${(currentPage - 1) * pageSize + rowCounter.count}"/>
+                <b><c:out value="${rowNumber}"/></b>
+            </td>
             <td>
-                <c:out value="${item.publishedDate}"/>
+                <fmt:formatDate value="${item.publishedDate}" pattern="dd-MM-yyyy"/>
                 <br/>
                 <b><i><c:out value="${item.blog.name}"/></i></b>
             </td>
