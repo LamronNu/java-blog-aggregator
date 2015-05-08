@@ -2,7 +2,7 @@ package jba.dao;
 
 import jba.model.Blog;
 import jba.model.Item;
-import jba.model.PageRequest;
+import jba.model.pagination.PageRequest;
 import org.hibernate.criterion.Order;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package jba.model;
+package jba.model.pagination;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
